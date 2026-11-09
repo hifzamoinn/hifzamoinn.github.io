@@ -47,3 +47,17 @@ html{scroll-padding-top:105px}
 .client-hilton .client-logo{max-height:60px}
 .work-experience-grid .client-logo-card small{display:inline-flex;align-items:center;flex-shrink:0;white-space:nowrap;margin:0;padding:7px 9px;letter-spacing:.4px}
 @media(max-width:760px){.work-experience-grid .client-card.client-logo-card{min-height:80px;padding:14px 16px}.client-logo{max-height:60px}}
+
+/* Company logo corrections, keeping the approved portfolio unchanged */
+.work-experience-grid .client-card.client-logo-card{min-height:94px}
+.client-redsea .client-logo-wrap{min-height:70px}
+.client-redsea .client-logo{max-height:85px;max-width:195px;width:100%;object-fit:contain}
+.client-shaker .client-logo{max-height:74px;max-width:192px;width:100%;object-fit:contain}
+.client-electricity .client-logo-wrap{gap:9px;min-width:0}
+.client-electricity .client-logo{width:48px;height:57px;max-height:57px;object-fit:contain;flex-shrink:0}
+.client-electricity .electricity-name{font-family:Manrope,'DM Sans',sans-serif;font-size:12px;font-weight:800;line-height:1.26;letter-spacing:-.4px;color:#293d62;min-width:0}
+@media(max-width:760px){
+.client-redsea .client-logo{max-width:195px;max-height:82px}
+.client-shaker .client-logo{max-width:196px;max-height:74px}
+.client-electricity .electricity-name{font-size:13px}
+}
