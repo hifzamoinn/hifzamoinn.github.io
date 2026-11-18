@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+<title id="title">Distributor replenishment planning application illustration</title><desc id="desc">Enterprise planning interface showing distributor stock, demand coverage, replenishment recommendations and allocation controls.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#eceffa"/><stop offset=".5" stop-color="#e2edfc"/><stop offset="1" stop-color="#ede6f6"/></linearGradient><linearGradient id="panel" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#f9faff"/></linearGradient><filter id="shadow" x="-25%" y="-30%" width="150%" height="170%"><feDropShadow dx="0" dy="16" stdDeviation="17" flood-color="#8391ba" flood-opacity=".2"/></filter></defs>
+<rect width="960" height="600" fill="url(#bg)"/><circle cx="30" cy="80" r="180" fill="#fff" opacity=".17"/><circle cx="900" cy="610" r="220" fill="#b8c6f5" opacity=".17"/>
+<g filter="url(#shadow)"><rect x="66" y="66" width="827" height="470" rx="26" fill="url(#panel)" stroke="#fff" stroke-width="3"/></g>
+<rect x="66" y="66" width="827" height="70" rx="26" fill="#eff3fb"/><rect x="66" y="110" width="827" height="26" fill="#eff3fb"/>
+<circle cx="103" cy="101" r="8" fill="#aec3e8"/><circle cx="128" cy="101" r="8" fill="#d3bde6"/><circle cx="153" cy="101" r="8" fill="#d5e5f5"/>
+<text x="193" y="108" font-size="21" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="#344e76">Distributor Replenishment</text>
+<rect x="741" y="90" width="122" height="27" rx="14" fill="#e5f4eb"/><text x="760" y="109" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="#378268">PLAN · DRAFT</text>
+<g stroke="#e1e8f4" stroke-width="2" fill="#f7f9fe"><rect x="99" y="166" width="175" height="86" rx="15"/><rect x="295" y="166" width="175" height="86" rx="15"/><rect x="491" y="166" width="175" height="86" rx="15"/><rect x="687" y="166" width="175" height="86" rx="15"/></g>
+<g font-family="Arial,Helvetica,sans-serif"><g font-size="14" fill="#7486a0"><text x="115" y="191">Sell-out</text><text x="311" y="191">On-hand</text><text x="507" y="191">Inbound</text><text x="703" y="191">Gap</text></g>
+<g fill="#304d79" font-size="30" font-weight="700"><text x="115" y="233">28.4K</text><text x="311" y="233">19.8K</text><text x="507" y="233">8.6K</text><text x="703" y="233">11.2K</text></g></g>
+<rect x="99" y="276" width="464" height="206" rx="16" fill="#fff" stroke="#dfe6f1" stroke-width="2"/><rect x="581" y="276" width="281" height="206" rx="16" fill="#fff" stroke="#dfe6f1" stroke-width="2"/>
+<text x="119" y="307" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="#364e73">Demand vs allocation</text>
+<text x="601" y="307" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="#364e73">Days of cover</text>
+<g stroke="#e0e8f2" stroke-width="2"><path d="M122 437h409M122 397h409M122 357h409"/></g>
+<g fill="#a8bdea"><rect x="148" y="383" width="25" height="54" rx="5"/><rect x="226" y="356" width="25" height="81" rx="5"/><rect x="304" y="342" width="25" height="95" rx="5"/><rect x="382" y="323" width="25" height="114" rx="5"/><rect x="460" y="312" width="25" height="125" rx="5"/></g>
+<g fill="#567fca"><rect x="178" y="402" width="25" height="35" rx="5"/><rect x="256" y="385" width="25" height="52" rx="5"/><rect x="334" y="371" width="25" height="66" rx="5"/><rect x="412" y="358" width="25" height="79" rx="5"/><rect x="490" y="346" width="25" height="91" rx="5"/></g>
+<g font-size="13" font-family="Arial,Helvetica,sans-serif" fill="#70819b"><text x="603" y="346">North</text><text x="603" y="387">West</text><text x="603" y="428">South</text></g>
+<g fill="#ecf1f8"><rect x="674" y="332" width="140" height="15" rx="7"/><rect x="674" y="373" width="140" height="15" rx="7"/><rect x="674" y="414" width="140" height="15" rx="7"/></g>
+<rect x="674" y="332" width="112" height="15" rx="7" fill="#6d96d5"/><rect x="674" y="373" width="74" height="15" rx="7" fill="#b4a4d7"/><rect x="674" y="414" width="41" height="15" rx="7" fill="#edae78"/>
+<text x="118" y="511" font-size="14" font-family="Arial,Helvetica,sans-serif" fill="#7c8aa1">Demand signals → Stock projection → Allocation → Approval</text>
+</svg>
