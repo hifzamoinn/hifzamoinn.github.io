@@ -44,3 +44,12 @@
 @media(max-width:950px){.connect-methods{grid-template-columns:1fr 1fr}.connect-method:last-child{grid-column:span 2}}
 @media(max-width:700px){.contact-connect{margin:36px auto 34px}.contact-connect .connect-trigger{min-height:110px;padding:22px 20px;align-items:flex-start}.contact-connect .connect-title{font-size:31px}.contact-connect .connect-expand{padding:10px;font-size:11px}.contact-connect .connect-expand .on-close,.contact-connect .connect-expand .on-open{display:none!important}.connect-body{padding:21px 18px 25px}.connect-methods{grid-template-columns:1fr}.connect-method:last-child{grid-column:auto}.contact-connect .connect-form{grid-template-columns:1fr;grid-template-areas:"heading" "identity" "phone" "message" "submit" "notice"}.connect-identity{grid-template-columns:1fr}.connect-field textarea{height:140px;min-height:140px}.connect-submit{width:100%}}
 @media(prefers-reduced-motion:reduce){.connect-expand svg,.connect-method,.connect-field input,.connect-field textarea{transition:none}}
+
+/* AJAX submission feedback */
+.contact-connect .connect-form{grid-template-areas:"heading heading" "identity message" "phone message" "submit submit" "status status" "notice notice"}
+.connect-status{grid-area:status;font-size:12px;line-height:1.6;margin:0;min-height:0;color:#536d9c}
+.connect-status:empty{display:none}
+.connect-status[data-state="error"]{color:#a64436}
+.connect-status[data-state="success"]{color:#257653}
+.connect-submit:disabled{opacity:.65;cursor:progress}
+@media(max-width:700px){.contact-connect .connect-form{grid-template-areas:"heading" "identity" "phone" "message" "submit" "status" "notice"}}
