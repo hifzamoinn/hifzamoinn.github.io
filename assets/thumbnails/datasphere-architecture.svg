@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+<title id="title">Enterprise data foundation architecture illustration</title><desc id="desc">A SAP Datasphere inspired data flow with enterprise source systems feeding integration, modeling and analytical consumption.</desc>
+<defs>
+<linearGradient id="bg" x2="1" y2="1"><stop stop-color="#e8f5fb"/><stop offset=".56" stop-color="#e3ebfa"/><stop offset="1" stop-color="#eee9fa"/></linearGradient>
+<linearGradient id="main" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffffff" stop-opacity=".95"/><stop offset="1" stop-color="#f8faff" stop-opacity=".85"/></linearGradient>
+<linearGradient id="blue" x2="1"><stop stop-color="#6b9edc"/><stop offset="1" stop-color="#6684d5"/></linearGradient>
+<filter id="shadow" x="-30%" y="-40%" width="160%" height="180%"><feDropShadow dx="0" dy="17" stdDeviation="19" flood-color="#6a83aa" flood-opacity=".18"/></filter>
+</defs>
+<rect width="960" height="600" fill="url(#bg)"/><circle cx="855" cy="78" r="200" fill="#fff" opacity=".18"/><circle cx="72" cy="585" r="225" fill="#b4dce9" opacity=".14"/>
+<g filter="url(#shadow)"><rect x="62" y="74" width="836" height="452" rx="28" fill="url(#main)" stroke="#fff" stroke-width="3"/></g>
+<rect x="62" y="74" width="836" height="69" rx="28" fill="#eef3fc"/><rect x="62" y="115" width="836" height="28" fill="#eef3fc"/>
+<circle cx="101" cy="108" r="8" fill="#adc4e7"/><circle cx="127" cy="108" r="8" fill="#d4c3ea"/><circle cx="153" cy="108" r="8" fill="#dce6f4"/>
+<text x="192" y="116" font-size="21" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="#314e78">Enterprise Data Foundation</text>
+<text x="98" y="179" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="#758caa" letter-spacing="1.5">SOURCE SYSTEMS</text>
+<text x="393" y="179" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="#758caa" letter-spacing="1.5">SAP DATASPHERE</text>
+<text x="733" y="179" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="#758caa" letter-spacing="1.5">CONSUMPTION</text>
+<g fill="#ffffff" stroke="#d8e5f3" stroke-width="2">
+<rect x="97" y="203" width="207" height="67" rx="13"/><rect x="97" y="284" width="207" height="67" rx="13"/><rect x="97" y="365" width="207" height="67" rx="13"/>
+<rect x="374" y="213" width="273" height="206" rx="21" fill="#eaf1fd" stroke="#bfd3ee" stroke-width="3"/>
+<rect x="722" y="243" width="144" height="65" rx="13"/><rect x="722" y="330" width="144" height="65" rx="13"/></g>
+<g font-family="Arial,Helvetica,sans-serif" font-weight="700" fill="#334d75">
+<text x="133" y="242" font-size="19">SAP S/4HANA</text><text x="133" y="323" font-size="19">Cloud Apps</text><text x="133" y="404" font-size="19">SQL / APIs</text>
+<text x="409" y="246" font-size="21">Data Builder</text><text x="412" y="291" font-size="15" fill="#7086a9">Integration &amp; Staging</text><text x="412" y="338" font-size="15" fill="#7086a9">Transformation Views</text><text x="412" y="385" font-size="15" fill="#7086a9">Business Semantics</text>
+<text x="749" y="282" font-size="19">SAC</text><text x="749" y="369" font-size="17">Analytics</text></g>
+<g stroke="#6c93d0" stroke-width="5" fill="none" stroke-linecap="round"><path d="M307 238h40v65h21"/><path d="M307 318h61"/><path d="M307 399h40v-71h21"/><path d="M651 317h42v-42h25"/><path d="M693 317v46h25"/></g>
+<g fill="#6c93d0"><path d="m358 295 12 8-12 8z"/><path d="m708 267 12 8-12 8z"/><path d="m708 355 12 8-12 8z"/></g>
+<g><rect x="411" y="258" width="197" height="10" rx="5" fill="#bfd3ed"/><rect x="411" y="303" width="150" height="10" rx="5" fill="#a8bbed"/><rect x="411" y="350" width="176" height="10" rx="5" fill="url(#blue)"/></g>
+<text x="105" y="487" font-size="15" font-family="Arial,Helvetica,sans-serif" fill="#8094ae">Data integration · Modeling · Semantic layer · Governed consumption</text>
+</svg>
