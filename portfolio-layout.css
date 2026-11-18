@@ -21,3 +21,10 @@
 @media(max-width:760px){.project-summary{display:none}.project-filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:7px}.project-filters button{white-space:nowrap;font-size:11px;padding:10px 13px}.project-showcase{grid-template-columns:1fr;gap:13px}.project-showcase>.feature-card{grid-column:1;display:block;min-height:0}.feature-art{min-height:200px;padding:38px 20px 15px}.feature-art img{max-height:210px}.feature-copy{padding:23px}.feature-copy h3{font-size:26px}.feature-copy p{font-size:13px}.feature-copy .project-link{margin-top:9px}.compact-project{display:block}.compact-project .project-art{height:145px;min-height:145px}.compact-project .project-art .inner{height:92px}#clients .clients{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}#clients .client-logo-card{min-height:110px;flex-direction:column;justify-content:center;gap:4px}#clients .client-logo-wrap{width:100%;height:60px}#clients .client-logo-card small{font-size:9px}#approach{padding-top:26px}}
 @media(max-width:430px){#clients .clients{grid-template-columns:1fr}#clients .client-logo-card{flex-direction:row;min-height:90px}#clients .client-logo-wrap{justify-content:flex-start}}
 @media(prefers-reduced-motion:reduce){.project-filters button{transition:none!important}}
+
+/* Approved complementary project thumbnails. No other page layouts changed. */
+.compact-project .project-art.project-thumbnail{padding:0;background:#e6eef9!important;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.compact-project .project-art.project-thumbnail img{display:block;width:100%;height:100%;min-height:220px;object-fit:cover;object-position:center;transition:transform .35s ease}
+.compact-project:hover .project-art.project-thumbnail img{transform:scale(1.025)}
+@media(max-width:760px){.compact-project .project-art.project-thumbnail img{min-height:145px;max-height:190px;object-fit:cover}}
+@media(prefers-reduced-motion:reduce){.compact-project .project-art.project-thumbnail img{transition:none!important;transform:none!important}}
