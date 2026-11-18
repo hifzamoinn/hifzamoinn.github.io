@@ -1,0 +1,46 @@
+/* Hifza contact section – approved professional light Liquid Glass styling */
+.contact-connect{margin:54px auto 55px;border-radius:28px;padding:0;overflow:hidden;text-align:left;background:linear-gradient(135deg,rgba(255,255,255,.76),rgba(234,241,253,.72));border:1px solid rgba(255,255,255,.94);box-shadow:0 24px 60px rgba(52,78,123,.09);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.contact-connect .connect-trigger{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:138px;padding:28px 38px}
+.contact-connect .connect-trigger::-webkit-details-marker{display:none}
+.contact-connect .connect-trigger:focus-visible{outline:3px solid #7ca6e7;outline-offset:-6px}
+.contact-connect .connect-trigger-copy{display:flex;flex-direction:column;gap:6px}
+.contact-connect .connect-title{font:800 clamp(29px,3.5vw,43px)/1.16 Manrope,sans-serif;letter-spacing:-1.55px;color:#20334e}
+.contact-connect .connect-title .connect-dot{color:#6385d4}
+.contact-connect .connect-subtitle{font-size:12px;color:#6b7c97}
+.contact-connect .connect-expand{display:inline-flex;gap:10px;align-items:center;white-space:nowrap;padding:12px 16px;border:1px solid #d5e1f5;background:rgba(238,245,255,.9);border-radius:99px;font-size:12px;font-weight:800;color:#4e70b2}
+.contact-connect .connect-expand svg{transition:transform .2s ease}
+.contact-connect[open] .connect-expand svg{transform:rotate(180deg)}
+.contact-connect .connect-expand .on-open{display:none}
+.contact-connect[open] .connect-expand .on-open{display:inline}
+.contact-connect[open] .connect-expand .on-close{display:none}
+.connect-body{border-top:1px solid #e1e8f5;padding:26px 38px 35px}
+.connect-intro{font-size:13px;line-height:1.8;color:#667993;max-width:760px;margin:0 0 20px}
+.connect-methods{display:grid;grid-template-columns:1.15fr .95fr .72fr;gap:10px}
+.connect-method{display:flex;align-items:center;gap:12px;border-radius:14px;border:1px solid #e0e8f6;background:rgba(255,255,255,.75);padding:15px 14px;text-decoration:none;min-width:0;transition:background .18s,border-color .18s}
+.connect-method:hover{background:#fff;border-color:#bdd3f3}
+.connect-method-icon{display:grid;place-items:center;width:38px;height:38px;flex:0 0 38px;border-radius:11px;background:#e7f0fd;color:#4777c6;font-size:19px}
+.connect-method-copy{display:flex;flex-direction:column;min-width:0;gap:4px}
+.connect-method-copy small{font-size:10px;color:#7b8aa4;font-weight:650}
+.connect-method-copy strong{font-size:12px;line-height:1.4;color:#283e61;overflow-wrap:anywhere}
+.connect-method-arrow{margin-left:auto;color:#6387cb}
+.contact-connect .connect-form{margin-top:23px;padding-top:22px;border-top:1px solid #e3eafa;display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"heading heading" "identity message" "phone message" "submit submit" "notice notice";gap:13px 16px;text-align:left}
+.connect-form-heading{grid-area:heading}
+.connect-form-heading h3{font:800 19px Manrope,sans-serif;letter-spacing:-.5px;margin:0 0 5px;color:#263957}
+.connect-form-heading p{font-size:12px;color:#7385a0;margin:0 0 5px}
+.connect-identity{grid-area:identity;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.connect-phone{grid-area:phone}
+.connect-message{grid-area:message}
+.connect-field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.connect-field label{font-size:11px;color:#596e8d;font-weight:800}
+.connect-field input,.connect-field textarea{width:100%;background:rgba(255,255,255,.87);border:1px solid #d9e4f4;border-radius:12px;padding:13px 14px;font:inherit;font-size:13px;color:#253751;outline:none;transition:border-color .18s,box-shadow .18s}
+.connect-field input:focus,.connect-field textarea:focus{border-color:#6f9cde;box-shadow:0 0 0 3px rgba(96,145,217,.14)}
+.connect-field input::placeholder,.connect-field textarea::placeholder{color:#9aabc0}
+.connect-field textarea{resize:vertical;min-height:155px;height:100%}
+.connect-submit{grid-area:submit;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:12px;background:#29466f;color:white;font-weight:800;font-size:13px;border:1px solid #29466f;border-radius:13px;padding:14px 20px;justify-self:start}
+.connect-submit:hover{background:#365c8e}
+.connect-form-note{grid-area:notice;max-width:850px;color:#8190a6;font-size:11px;line-height:1.7;margin:0}
+.connect-form-note a{color:#4f70b0;text-decoration:underline;text-underline-offset:2px}
+.connect-honeypot{position:absolute!important;left:-99999px!important;opacity:0;pointer-events:none}
+@media(max-width:950px){.connect-methods{grid-template-columns:1fr 1fr}.connect-method:last-child{grid-column:span 2}}
+@media(max-width:700px){.contact-connect{margin:36px auto 34px}.contact-connect .connect-trigger{min-height:110px;padding:22px 20px;align-items:flex-start}.contact-connect .connect-title{font-size:31px}.contact-connect .connect-expand{padding:10px;font-size:11px}.contact-connect .connect-expand .on-close,.contact-connect .connect-expand .on-open{display:none!important}.connect-body{padding:21px 18px 25px}.connect-methods{grid-template-columns:1fr}.connect-method:last-child{grid-column:auto}.contact-connect .connect-form{grid-template-columns:1fr;grid-template-areas:"heading" "identity" "phone" "message" "submit" "notice"}.connect-identity{grid-template-columns:1fr}.connect-field textarea{height:140px;min-height:140px}.connect-submit{width:100%}}
+@media(prefers-reduced-motion:reduce){.connect-expand svg,.connect-method,.connect-field input,.connect-field textarea{transition:none}}
