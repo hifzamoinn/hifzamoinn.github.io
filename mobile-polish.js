@@ -1,0 +1,11 @@
+/* Mobile project carousel with accessible filters and position indicators. */
+(()=>{const container=document.getElementById('filteredProjects');if(!container)return;
+const filters=document.querySelectorAll('[data-filter]');
+const controls=document.createElement('div');controls.className='project-mobile-controls';controls.setAttribute('aria-label','Swipe through project cards');
+controls.innerHTML='<span class="project-mobile-count" aria-live="polite"></span><div class="project-mobile-dots" aria-label="Project carousel navigation"></div>';
+container.insertAdjacentElement('afterend',controls);
+const counter=controls.querySelector('.project-mobile-count'),dots=controls.querySelector('.project-mobile-dots');let visible=[];
+function position(){if(!visible.length)return;const left=container.scrollLeft;let active=0,nearest=Infinity;visible.forEach((card,i)=>{const delta=Math.abs(card.offsetLeft-visible[0].offsetLeft-left);if(delta<nearest){nearest=delta;active=i;}});counter.textContent=String(active+1).padStart(2,'0')+' / '+String(visible.length).padStart(2,'0')+' PROJECTS · SWIPE';[...dots.children].forEach((dot,i)=>{dot.classList.toggle('active',i===active);dot.setAttribute('aria-current',i===active?'true':'false');});}
+function refresh(){visible=[...container.querySelectorAll('.project-card:not([hidden])')];controls.hidden=!visible.length;dots.replaceChildren();visible.forEach((card,i)=>{const dot=document.createElement('button');dot.type='button';dot.setAttribute('aria-label','Show project '+(i+1));dot.addEventListener('click',()=>{const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;container.scrollTo({left:card.offsetLeft-visible[0].offsetLeft,behavior:reduce?'instant':'smooth'});});dots.append(dot);});position();}
+container.addEventListener('scroll',position,{passive:true});filters.forEach(b=>b.addEventListener('click',()=>{container.scrollLeft=0;requestAnimationFrame(refresh);}));window.addEventListener('resize',position,{passive:true});refresh();
+})();
