@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/x-icon" href="/favicon.svg?v=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light"><meta name="robots" content="noindex,nofollow">
+<title>Portfolio Insights | Hifza Moin</title>
+<meta name="description" content="Private analytics dashboard for Hifza Moin's portfolio engagement.">
+<style>
+:root{--bg:#f5f5f7;--paper:#fff;--ink:#1d1d1f;--sub:#6e6e73;--line:#e5e5ea;--blue:#0071e3;--muted:#f1f5fb;--green:#0c9872}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}a{color:var(--blue);text-decoration:none}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.top{background:rgba(255,255,255,.94);border-bottom:1px solid var(--line)}.top-inner{max-width:1140px;margin:auto;padding:0 25px;height:70px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{font-size:16px;font-weight:750;letter-spacing:-.04em;color:var(--ink)}.brand span{color:var(--blue)}.top-links{display:flex;gap:16px;align-items:center;font-size:12px;color:var(--sub)}
+.wrap{max-width:1140px;margin:auto;padding:34px 25px 70px}.heading{display:flex;justify-content:space-between;align-items:end;gap:14px;margin-bottom:22px}.eyebrow{color:#326eae;letter-spacing:.13em;font-weight:750;font-size:10px}.heading h1{font-size:clamp(29px,4vw,42px);letter-spacing:-.055em;line-height:1.15;margin:7px 0}.heading p{color:var(--sub);font-size:13px;margin:0}.actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.actions button,.actions select{border:1px solid #dadde3;border-radius:10px;padding:10px 13px;background:#fff;color:#2e3e53;font-size:12px}.actions .primary{background:#111;border-color:#111;color:#fff}
+.connection{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:12px 14px;border-radius:13px;margin-bottom:20px;font-size:12px;color:var(--sub)}.dot{width:8px;height:8px;background:#d5aa57;border-radius:50%;flex:none}.dot.live{background:#23ab7b}.status-details{margin-left:auto;color:#92a0af;font-size:11px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.metric{background:#fff;border:1px solid var(--line);border-radius:17px;padding:20px;min-width:0}.metric-label{font-size:11px;color:var(--sub);margin-bottom:16px}.metric strong{display:block;letter-spacing:-.06em;font-size:32px;font-weight:740;line-height:1.05}.metric small{color:#8d99a8;font-size:10px;display:block;margin-top:10px}.layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:14px;margin-top:14px}.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:21px;min-width:0}.panel h2{font-size:16px;letter-spacing:-.025em;margin:0}.panel p{color:var(--sub);font-size:11px;margin:5px 0 15px}.panel-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}.subtle{font-size:10px;color:#9ba5b2}.trend{display:block;width:100%;height:190px;overflow:visible}.axis{font-size:11px;color:#a2afbc}.grid-line{stroke:#ecf0f5;stroke-width:1}.spark{fill:none;stroke:#1881ee;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.area{fill:#d8e9fe;opacity:.56}
+.rows{display:grid;gap:12px}.bar-row{display:grid;grid-template-columns:minmax(100px,1.1fr) minmax(0,2fr) 40px;gap:12px;align-items:center;font-size:11px}.bar-row>span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#46546b}.track{height:9px;background:#f2f5f8;border-radius:9px;overflow:hidden}.fill{display:block;height:100%;background:#84b8ed;border-radius:9px}.bar-row>strong{text-align:right;font-size:11px;color:#3f5270;font-weight:700}.thin-rule{border:0;border-top:1px solid var(--line);margin:19px 0}.section-chart{display:grid;gap:12px}.section-item{display:grid;grid-template-columns:1fr auto;gap:5px 12px}.section-item>span{font-size:11px;color:#52657b}.section-item>b{font-size:11px}.section-item>.track{grid-column:1/-1;height:7px}.table{width:100%;border-collapse:collapse;table-layout:fixed}.table td,.table th{text-align:left;padding:11px 9px;border-bottom:1px solid #edf0f3;font-size:11px;overflow-wrap:anywhere}.table th{color:#7e8b9e;font-size:10px;font-weight:700}.table td:last-child,.table th:last-child{text-align:right;width:88px}.scroll-grid{display:flex;align-items:center;justify-content:space-between;gap:10px}.scroll-step{flex:1;text-align:center;background:#f6f9fc;border:1px solid #edf1f6;border-radius:12px;padding:17px 8px}.scroll-step b{display:block;font-size:24px;letter-spacing:-.04em}.scroll-step small{display:block;font-size:10px;color:#8793a1;margin-top:5px}
+.setup{border:1px solid #dce6f4;background:#fff;border-radius:19px;padding:25px;margin-top:20px}.setup h2{font-size:18px;margin:0 0 7px}.setup p{font-size:12px;color:#63758b;max-width:730px;margin:0 0 17px}.form-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1.8fr) auto;gap:9px}.form-grid input{border:1px solid #dbe2eb;border-radius:10px;padding:11px 12px;min-width:0;font-size:12px}.form-grid button{border:0;border-radius:10px;background:#0071e3;color:white;font-weight:700;font-size:12px;padding:0 18px}.setup .hint{margin:11px 0 0;font-size:10px;color:#98a3b0}.empty{border:1px dashed #dae3ef;border-radius:12px;padding:23px;text-align:center;color:#8794a5;font-size:12px}.footer{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:20px;color:#929ca9;font-size:11px}
+@media(max-width:800px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:minmax(0,1fr)}.form-grid{grid-template-columns:1fr}.form-grid button{padding:12px}.heading{align-items:start;flex-direction:column}}
+@media(max-width:480px){.wrap{padding:24px 14px 45px}.top-inner{padding:0 14px;height:62px}.top-links{gap:8px}.top-links a:first-child{display:none}.heading h1{font-size:31px}.metric{padding:15px}.metric strong{font-size:27px}.panel{padding:17px}.kpis{gap:8px}.bar-row{grid-template-columns:minmax(75px,.9fr) minmax(0,1.5fr) 34px;gap:7px}.scroll-grid{gap:5px}.scroll-step{padding:13px 4px}.scroll-step b{font-size:18px}.scroll-step small{font-size:9px}.footer{display:block}.connection .status-details{display:none}}
+/* Show readable country names without clipping on smaller screens. */
+#countries .bar-row{grid-template-columns:minmax(150px,1.35fr) minmax(0,2fr) 40px}
+@media(max-width:650px){#countries .bar-row{grid-template-columns:minmax(130px,1.25fr) minmax(0,1.5fr) 34px}}
+/* Clear readable source labels on mobile devices. */
+#external-referrers .bar-row,#internal-referrers .bar-row,#blog-pages .bar-row{grid-template-columns:minmax(115px,1.15fr) minmax(0,1.65fr) 40px}
+@media(max-width:650px){#external-referrers .bar-row,#internal-referrers .bar-row,#blog-pages .bar-row{grid-template-columns:minmax(95px,1.2fr) minmax(0,1.25fr) 30px;gap:7px}}
+</style>
+<style id="insights-executive-view">
+.executive-title{font-size:17px;letter-spacing:-.025em;margin:23px 0 10px}
+.section-description{color:#6e7b8c;font-size:12px;margin:0 0 13px}
+.kpis .metric small{line-height:1.5}
+.metric-label{font-weight:650}
+.metric .metric-help{font-size:10px;color:#788697;line-height:1.5;margin-top:9px}
+.insight-list{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:9px}
+.insight-list li{display:flex;gap:10px;align-items:flex-start;background:#f6f9fd;border:1px solid #e9eff7;border-radius:12px;padding:11px 13px;color:#43536a;font-size:12px;line-height:1.5}
+.insight-list li:before{content:"•";font-size:19px;line-height:16px;color:#1870d2}
+.insights-advanced{margin-top:18px;border:1px solid var(--line);background:#fff;border-radius:18px;padding:0}
+.insights-advanced>summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:20px 22px;font-size:15px;font-weight:750}
+.insights-advanced>summary::-webkit-details-marker{display:none}
+.insights-advanced>summary:after{content:"+";font-size:24px;color:#6b7c90;font-weight:400}
+.insights-advanced[open]>summary:after{content:"−"}
+.insights-advanced .advanced-body{padding:0 18px 18px}
+.insights-advanced .layout:first-child{margin-top:0}
+.empty-small{font-size:12px;color:#8b98a9}
+@media(max-width:650px){.insights-advanced>summary{padding:16px}.insights-advanced .advanced-body{padding:0 12px 13px}}
+</style>
+<style id="analytics-time-window-ui">
+.range-toggle{display:inline-flex;align-items:center;gap:10px;min-width:170px;justify-content:space-between!important;background:#fff!important;border:1px solid #cdd9ea!important;color:#184b82!important;font-weight:720!important;box-shadow:0 3px 12px #1a47750b}
+.range-toggle:hover,.range-toggle[aria-expanded="true"]{border-color:#0071e3!important;background:#f3f8ff!important}
+.range-toggle{gap:10px;min-height:39px;padding:9px 12px!important}
+.range-toggle .range-clock,.range-toggle .range-chevron{display:block;flex:none;width:16px;height:16px}
+.range-toggle .range-clock{opacity:.82}
+.range-toggle .range-chevron{margin-left:auto;opacity:.76;transition:transform .22s ease,opacity .22s ease}
+.range-toggle[aria-expanded="true"] .range-chevron{transform:rotate(180deg);opacity:1}
+.range-toggle:focus-visible{outline:2px solid #0071e3;outline-offset:3px}
+.time-window{border:1px solid #dce6f2;border-radius:18px;background:#fff;box-shadow:0 9px 28px #21436a0e;padding:20px 22px;margin:-4px 0 18px}
+.time-window[hidden]{display:none!important}
+.time-head{display:flex;align-items:start;justify-content:space-between;gap:15px}
+.time-head strong{font-size:16px;letter-spacing:-.025em}
+.time-head p{color:#78879a;font-size:11px;margin:5px 0 0}
+.time-head button{border:0;background:#f2f5f9;width:30px;height:30px;border-radius:8px;color:#65758a;font-size:20px;cursor:pointer}
+.time-presets{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0}
+.time-presets button{background:#f6f8fb;border:1px solid #e0e7f0;color:#52647a;border-radius:9px;padding:8px 13px;font-size:11px;font-weight:690;cursor:pointer}
+.time-presets button.active{background:#e8f3ff;border-color:#8cbbef;color:#075fbf}
+.time-slider-wrap{padding:16px;background:#f7fafe;border:1px solid #e9f0f8;border-radius:13px}
+.time-slider-header{display:flex;align-items:center;justify-content:space-between;font-size:12px;margin-bottom:12px}
+.time-slider-header label{color:#5e7085}.time-slider-header strong{color:#126bc2}
+.time-slider-wrap input[type="range"]{width:100%;accent-color:#0071e3;cursor:pointer}
+.time-slider-ticks{display:flex;justify-content:space-between;font-size:10px;color:#96a4b3;margin-top:6px}
+.time-foot{display:flex;justify-content:space-between;gap:10px;border-top:1px solid #eef2f6;padding-top:12px;margin-top:9px;color:#8290a0;font-size:10px}
+@media(max-width:650px){.time-window{padding:16px 14px}.time-foot{flex-direction:column;gap:4px}.time-presets button{padding:8px 10px}}
+@media(max-width:400px){.range-toggle{min-width:155px}}
+</style>
+<style id="header-connect-panel-css">
+.top{position:relative;z-index:40}
+.connection-toggle{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:10px;border:1px solid #bfd5ee;background:#eef6ff;color:#0865be;font-size:12px;font-weight:730;white-space:nowrap}
+.connection-toggle:hover,.connection-toggle[aria-expanded="true"]{background:#dcefff;border-color:#85b6eb}
+.connection-toggle .connection-chevron{display:block;flex:none;width:15px;height:15px;opacity:.78;transition:transform .22s ease,opacity .22s ease}
+.connection-toggle[aria-expanded="true"] .connection-chevron{transform:rotate(180deg);opacity:1}
+.connection-toggle:focus-visible{outline:2px solid #0875df;outline-offset:3px}
+.connection-indicator{display:block;width:7px;height:7px;background:#c18b48;border-radius:50%}
+.connection-toggle.connected .connection-indicator{background:#14a171}
+.connection-popover{position:absolute;right:max(20px,calc((100vw - 1140px)/2 + 25px));top:calc(100% + 7px);width:min(390px,calc(100vw - 24px));padding:19px;background:#fff;border:1px solid #dce5f1;border-radius:17px;box-shadow:0 14px 40px #1e385d24;z-index:50}
+.connection-popover[hidden]{display:none!important}
+.connection-popover-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:15px}
+.connection-popover-head strong{font-size:15px}.connection-popover-head p{margin:3px 0 0;color:#7a8898;font-size:11px}
+.connection-popover-head button{display:grid;place-items:center;border:0;background:#f2f5f9;color:#6a7789;border-radius:8px;width:30px;height:30px;font-size:20px}
+.connection-form{display:grid;gap:8px}
+.connection-form label{font-size:11px;color:#53667d;font-weight:700}
+.connection-form input{width:100%;min-width:0;padding:11px;border:1px solid #d9e3ee;border-radius:10px;font-size:12px;background:#fbfcfe;color:#243b54}
+.connection-form button{background:#0875df;color:#fff;border:0;border-radius:10px;padding:11px;font-weight:750;font-size:12px;margin-top:4px}
+.connection-form button:hover{background:#0064c2}
+.connection-privacy{font-size:10px;color:#8995a6;line-height:1.5;margin:12px 0 0}
+@media(max-width:480px){.connection-popover{right:12px}.top-links{gap:9px}.connection-toggle{padding:8px 10px;font-size:11px}}
+</style><style>.return-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}.return-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:9px}.return-compare>div{background:#f7f9fc;border-radius:10px;padding:11px;overflow-wrap:anywhere}.return-compare b{display:block;font-size:11px;margin-bottom:6px}.return-compare p{margin:0;font-size:11px;line-height:1.6}@media(max-width:650px){.return-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.return-compare{grid-template-columns:1fr}}</style></head>
+<body>
+<header class="top"><div class="top-inner"><a class="brand" href="/">Hifza Moin<span>.</span> <span style="color:#6e6e73;font-size:12px;font-weight:550">Insights</span></a><nav class="top-links"><a href="/">Portfolio</a><a href="https://github.com/asherahmedd" target="_blank" rel="noopener">GitHub ↗</a><button id="connection-toggle" class="connection-toggle" type="button" aria-expanded="false" aria-controls="connection-panel"><span class="connection-indicator" aria-hidden="true"></span><span>Connect</span><svg class="connection-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 10 5 5 5-5"/></svg></button></nav></div>
+<div class="connection-popover" id="connection-panel" hidden>
+ <div class="connection-popover-head"><div><strong>Connect analytics</strong><p>Private Cloudflare dashboard connection</p></div><button id="connection-close" type="button" aria-label="Close connection panel">×</button></div>
+ <form id="connect" class="connection-form">
+  <label for="endpoint">Worker endpoint</label><input id="endpoint" type="url" placeholder="https://your-worker.workers.dev" autocomplete="url" required>
+  <label for="token">Private admin token</label><input id="token" type="password" placeholder="Enter your admin token" autocomplete="off" required>
+  <button type="submit">Connect analytics</button>
+ </form>
+ <p class="connection-privacy">The endpoint is remembered on this device. Your token stays in page memory and is never published to GitHub.</p>
+</div></header>
+<main class="wrap"><div class="heading"><div><div class="eyebrow">PRIVATE ANALYTICS</div><h1>Portfolio Insights</h1><p>Understand how visitors discover and explore your work.</p></div><div class="actions"><button id="range-toggle" class="range-toggle" type="button" aria-expanded="false" aria-controls="time-window"><svg class="range-clock" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="range-summary">Last 30 days</span><svg class="range-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 10 5 5 5-5"/></svg></button><button id="refresh" type="button">Refresh ↻</button><button id="demo" class="primary" type="button">View demo</button></div></div>
+<section class="time-window" id="time-window" aria-label="Select analytics time window" hidden>
+ <div class="time-head"><div><strong>Explore a time window</strong><p>All KPIs, charts and visitor journeys update together.</p></div><button id="time-close" type="button" aria-label="Close date range controls">×</button></div>
+ <div class="time-presets" aria-label="Quick date ranges">
+  <button type="button" data-hours="1">1 hour</button>
+  <button type="button" data-hours="24">24 hours</button>
+  <button type="button" data-hours="168">7 days</button>
+  <button type="button" data-hours="720">30 days</button>
+  <button type="button" data-hours="0">All time</button>
+ </div>
+ <div class="time-slider-wrap">
+  <div class="time-slider-header"><label for="time-slider">Rolling lookback</label><strong id="time-slider-value">30 days</strong></div>
+  <input id="time-slider" type="range" min="0" max="9" step="1" value="8" aria-label="Rolling time range">
+  <div class="time-slider-ticks"><span>1 hour</span><span>1 day</span><span>1 week</span><span>90 days</span></div>
+ </div>
+ <div class="time-foot"><span id="time-selection">Selected: Last 30 days</span><span>All time includes retained data only (up to 90 days).</span></div>
+</section>
+<div class="connection"><span class="dot" id="dot"></span><span id="status">Demo mode — no real visitor data</span><span class="status-details" id="updated">Awaiting API connection</span></div>
+<h2 class="executive-title">At a glance</h2>
+<p class="section-description">Understand your portfolio traffic without needing to interpret technical events. All numbers use your selected date range.</p>
+<div class="kpis">
+ <div class="metric"><div class="metric-label">Total Visits</div><strong id="visitors">—</strong><small>Tracked page visits</small><div class="metric-help">Not unique people; repeated page loads count again.</div></div>
+ <div class="metric"><div class="metric-label">LinkedIn Traffic</div><strong id="linkedin-views">—</strong><small id="linkedin-share">Page views referred by LinkedIn</small><div class="metric-help">Referrer may be hidden by LinkedIn or the browser.</div></div>
+ <div class="metric"><div class="metric-label">Project Views</div><strong id="project-opens">—</strong><small id="top-project">Recorded project-link opens</small><div class="metric-help">This measures tracked project openings, not unique readers.</div></div>
+ <div class="metric"><div class="metric-label">Returning Visits</div><strong id="returning-visits">—</strong><small>Browsers allowing analytics cookies</small><div class="metric-help">Only consenting browsers; not all returning people.</div></div>
+</div>
+<section class="panel" style="margin-top:14px" aria-label="Insights summary">
+ <div class="panel-heading"><h2>What happened on your portfolio?</h2><span class="subtle">Plain-English insights</span></div>
+ <ul class="insight-list" id="insight-list"><li>Connect your analytics to see insights based on real traffic.</li></ul>
+</section>
+<div class="layout">
+ <section class="panel"><div class="panel-heading"><h2>Visits over time</h2><span class="subtle" id="trend-label">Daily page visits</span></div><p>See when your portfolio attracted visitors.</p><svg class="trend" viewBox="0 0 680 210" preserveAspectRatio="none" aria-label="Tracked visits over time"><path class="grid-line" d="M15 30H668 M15 78H668 M15 126H668 M15 174H668"/><path id="trend-area" class="area" d="M15 174L668 174Z"/><polyline class="spark" id="trend-line" points="15,174 668,174"/></svg><div class="subtle" id="date-label">Date range</div></section>
+ <section class="panel"><h2>Where visitors came from</h2><p>Sources detected from referring websites. Missing sources are included as Other / unknown.</p><div class="rows" id="sources"></div></section>
+</div>
+<section class="panel" style="margin-top:14px"><h2>Most popular projects</h2><p>Projects visitors chose to open.</p><div class="rows" id="projects"></div></section>
+<section class="panel" id="visitor-journey-panel" style="margin-top:14px" aria-label="Visitor journeys">
+ <div class="panel-heading"><h2>Visitor Journeys</h2><span class="subtle">Opted-in browsing sessions only</span></div>
+ <p>Understand the order of pages explored, approximate active time, and which topics hold attention. Sessions are tab-scoped and not linked to names or employers.</p>
+ <div class="journey-kpis"><div class="scroll-step"><b id="journey-sessions">—</b><small>Recorded journeys</small></div><div class="scroll-step"><b id="journey-steps">—</b><small>Pages explored</small></div><div class="scroll-step"><b id="journey-average">—</b><small>Avg. pages per journey</small></div></div>
+ <div class="layout">
+  <div class="journey-subpanel"><h3>Pages holding attention</h3><p>Average measured active time per completed page view; this is an estimate, not reading time.</p><div class="journey-ranking" id="journey-pages"></div></div>
+  <div class="journey-subpanel"><h3>Most common next pages</h3><p>Where opted-in visits move after viewing another page.</p><div class="journey-ranking" id="journey-transitions"></div></div>
+ </div>
+ <details class="journey-details"><summary>See individual anonymous journeys</summary><div id="journey-recent" class="journey-recent"></div></details>
+ <p class="subtle" id="journey-note">Journey activity appears here when visitors explore multiple pages after accepting optional analytics cookies.</p>
+</section>
+<section class="panel" id="returning-analysis" style="margin-top:14px"><div class="panel-heading"><h2>Returning Visitor Analysis</h2><span class="subtle">Consented browsers</span></div><p>When browsers return, how long they were away, and which pages they explored.</p><div class="return-kpis"><div class="scroll-step"><b id="return-session-count">—</b><small>Returning sessions</small></div><div class="scroll-step"><b id="return-browser-count">—</b><small>Returning browsers</small></div><div class="scroll-step"><b id="return-median">—</b><small>Median time to return</small></div><div class="scroll-step"><b id="return-page-avg">—</b><small>Pages per return</small></div></div><div class="layout"><div class="journey-subpanel"><h3>Time to return</h3><div class="rows" id="return-intervals"></div></div><div class="journey-subpanel"><h3>Pages explored on return</h3><div class="rows" id="return-pages"></div></div></div><details class="journey-details"><summary>Previous visit vs. returning visit</summary><div class="journey-recent" id="return-recent"></div></details><p class="subtle" id="return-note">Requires the updated Cloudflare Worker and D1 migration.</p></section>
+<style id="journey-dashboard-styles">
+.journey-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:13px 0}
+.journey-subpanel{border:1px solid #edf1f5;border-radius:13px;padding:14px;min-width:0}
+.journey-subpanel h3{font-size:13px;margin:0;font-weight:730}
+.journey-ranking{display:grid;gap:10px}
+.journey-record{padding:8px 0;border-bottom:1px solid #f0f2f5;display:grid;gap:3px}
+.journey-record:last-child{border:0}
+.journey-record strong{font-size:11px;overflow-wrap:anywhere}
+.journey-record small{font-size:10px;color:#718095}
+.journey-record .path-track{height:5px;background:#eff4fb;border-radius:10px;overflow:hidden}
+.journey-record .path-fill{height:100%;background:#80b6ef;border-radius:10px}
+.journey-details{margin-top:15px;border-top:1px solid #e8edf3;padding-top:13px}
+.journey-details>summary{cursor:pointer;color:#126fce;font-size:12px;font-weight:710}
+.journey-recent{display:grid;gap:10px;margin-top:12px}
+.journey-entry{border:1px solid #e9edf4;border-radius:12px;background:#fcfdff;padding:12px}
+.journey-entry h4{font-size:11px;margin:0 0 10px}
+.journey-steps{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.journey-steps li{display:flex;gap:8px;align-items:flex-start;font-size:11px;overflow-wrap:anywhere}
+.journey-step-number{display:grid;place-items:center;min-width:20px;height:20px;border-radius:50%;background:#e8f2ff;color:#086acb;font-size:10px;font-weight:750}
+@media(max-width:650px){.journey-kpis{gap:5px}.journey-kpis .scroll-step{padding:12px 5px}.journey-kpis .scroll-step b{font-size:20px}.journey-subpanel{padding:12px}}
+</style>
+<details class="insights-advanced" id="visitor-intelligence" open>
+ <summary>Visitor Intelligence <span class="subtle">Location, network clues and devices</span></summary>
+ <div class="advanced-body">
+  <p class="section-description">Countries and referrers include all measured page views. More detailed city, region, network and browser breakdowns cover <strong>only people who accepted optional analytics cookies</strong>. These are approximate, aggregated network signals—not personal identities.</p>
+  <div class="layout">
+   <section class="panel"><h2>Countries</h2><p>Approximate countries for all tracked page views.</p><div class="rows" id="countries"></div></section>
+   <section class="panel"><h2>Cities</h2><p>Approximate cities for opted-in visits, not precise locations.</p><div class="rows" id="visitor-cities"></div></section>
+  </div>
+  <div class="layout">
+   <section class="panel"><h2>Regions</h2><p>State or region inferred from the network.</p><div class="rows" id="visitor-regions"></div></section>
+   <section class="panel"><h2>Internet network / ISP</h2><p>Cloudflare ASN organization. <strong>This is not the visitor's verified employer.</strong> It may name an ISP, VPN, hosting provider or company network.</p><div class="rows" id="visitor-networks"></div></section>
+  </div>
+  <div class="layout">
+   <section class="panel"><h2>Browser and operating system</h2><p>Broad categories only. Full user-agent details are not stored.</p><div class="rows" id="visitor-browsers"></div><hr class="thin-rule"><div class="rows" id="visitor-os"></div></section>
+   <section class="panel"><h2>Device and timezone</h2><p>Grouped device types and approximate network timezones for opted-in visits.</p><div class="rows" id="visitor-devices"></div><hr class="thin-rule"><div class="rows" id="visitor-timezones"></div></section>
+  </div>
+  <section class="panel" style="margin-top:14px"><h2>Sources for opted-in visits</h2><p>Only referring hostnames, never personal LinkedIn profile URLs.</p><div class="rows" id="visitor-referrers"></div><p class="subtle" id="visitor-context-note">Detailed visitor information begins only after the Cloudflare update and visitor consent.</p></section>
+ </div>
+</details>
+<details class="insights-advanced" id="advanced">
+ <summary>Advanced Analytics <span class="subtle">Page details, engagement and opted-in browsers</span></summary>
+ <div class="advanced-body">
+  <div class="layout">
+   <section class="panel"><h2>Pages Opened</h2><p>Page loads across your portfolio, projects and blog articles.</p><div class="metric" style="margin-bottom:11px"><strong id="pageviews">—</strong><small>Total page loads</small></div><table class="table"><thead><tr><th>Page</th><th>Views</th></tr></thead><tbody id="pages"></tbody></table></section>
+   <section class="panel"><h2>Visitor activity</h2><p>Estimated activity, not proof of reading.</p><div class="metric" style="margin-bottom:12px"><div class="metric-label">Average Time Spent</div><strong id="duration">—</strong><small>Approximate active time per page-local session</small></div><h2>Devices</h2><div class="rows" id="devices"></div></section>
+  </div>
+  <div class="layout">
+   <section class="panel"><h2>Section engagement</h2><p>Approximate active time per portfolio section.</p><div class="section-chart" id="sections"></div></section>
+   <section class="panel"><h2>How far people scrolled</h2><p>Page sessions reaching each scroll threshold.</p><div class="scroll-grid" id="scroll"></div><hr class="thin-rule"><h2>Technology filter clicks</h2><div class="rows" id="filters"></div></section>
+  </div>
+  <div class="layout">
+   <section class="panel"><h2>New vs returning browsers</h2><p>Counts only browsers that agreed to optional analytics cookies.</p><div class="repeat-metrics" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px"><div class="scroll-step"><b id="new-browsers">—</b><small>New opted-in browsers</small></div><div class="scroll-step"><b id="consented-browsers">—</b><small>Distinct opted-in browsers</small></div></div><p class="subtle" id="repeat-explanation">Requires optional visitor consent.</p></section>
+   <section class="panel"><h2>Where visitors came from</h2><p>External referring domains recorded for portfolio page views.</p><div class="rows" id="external-referrers"></div><p class="subtle" id="external-note">External sources are grouped separately from site navigation.</p><hr class="thin-rule"><h2>Navigation within your portfolio</h2><p>Page views referred by your own website, not new external visitors.</p><div class="rows" id="internal-referrers"></div><p class="subtle" id="internal-note">Referrer counts represent page loads, not unique people.</p><hr class="thin-rule"><h2>Unattributed page views</h2><p id="unattributed-note">No source breakdown available yet.</p><hr class="thin-rule"><h2>Blog engagement</h2><div class="scroll-grid" style="grid-template-columns:repeat(2,minmax(0,1fr));margin:10px 0 12px"><div class="scroll-step"><b id="blog-clicks">—</b><small>Blog-link clicks</small></div><div class="scroll-step"><b id="blog-views">—</b><small>Article page views*</small></div></div><div class="rows" id="blog-pages"></div><p class="subtle" id="blog-note">* Article views are limited to the pages returned in the current analytics response.</p></section>
+  </div>
+ </div>
+</details>
+
+<div class="footer"><span>Portfolio Insights · Private analytics viewer</span><span>Illustrative numbers are always labeled as demo.</span></div></main>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);const fmt=n=>new Intl.NumberFormat('en-US').format(Math.round(Number(n)||0));const miniTime=m=>m>=60000?(m/60000).toFixed(1)+' min':Math.round(m/1000)+' sec';
+let secret='',api='',mode='none',requestVersion=0;
+const sliderHours=[1,3,6,12,24,72,168,336,720,2160];
+let timeRange={kind:'rolling',hours:720};const params=new URLSearchParams(location.search);try{api=localStorage.getItem('portfolio-insights-api')||''}catch{}$('endpoint').value=api;
+const names={'analytics':'SAP Analytics Cloud & Power BI','planning':'SAC Custom Planning','datasphere':'SAP Datasphere Engineering','automation':'SAP’s Autonomous Enterprise','agent':'AI-Powered Analytics Agent for SAP'};
+const example={summary:{visitors:428,sessions:517,pageviews:1194,project_opens:289,blog_opens:134,active_ms:56205000},daily:Array.from({length:30},(_,i)=>({day:'Day '+(i+1),pageviews:Math.round(19+12*Math.sin(i*.64)**2+i*.75),visitors:Math.round(9+6*Math.sin(i*.5)**2+i*.3)})),pages:[{path:'/',views:627},{path:'/projects/sap-datasphere-engineering.html',views:192},{path:'/projects/advanced-sap-analytics-cloud-dashboards.html',views:131},{path:'/blog/enterprise-ai-analytics-agent.html',views:83},{path:'/projects/sac-distributor-replenishment-planning.html',views:77}],sections:[{section:'work',active_ms:23800000,sessions:350},{section:'skills',active_ms:9900000,sessions:180},{section:'journey',active_ms:6900000,sessions:115},{section:'writing',active_ms:4500000,sessions:81}],projects:[{item:'datasphere',opens:115},{item:'analytics',opens:86},{item:'planning',opens:49},{item:'agent',opens:27},{item:'automation',opens:12}],scroll:[{depth:25,sessions:422},{depth:50,sessions:331},{depth:75,sessions:209},{depth:90,sessions:118}],countries:[{country:'DE',views:160},{country:'SA',views:149},{country:'NL',views:97},{country:'PK',views:87},{country:'US',views:66}],devices:[{device:'desktop',views:640},{device:'mobile',views:512},{device:'tablet',views:42}],referrers:[{referrer:'linkedin.com',views:389},{referrer:'github.com',views:72},{referrer:'google.com',views:55}],filters:[{item:'datasphere',clicks:102},{item:'sac',clicks:85},{item:'ai',clicks:52},{item:'planning',clicks:42},{item:'powerbi',clicks:19}]};
+const countryDisplayNames=typeof Intl!=='undefined'&&Intl.DisplayNames?new Intl.DisplayNames(['en'],{type:'region'}):null;
+function countryLabel(code){
+ const country=String(code||'').trim().toUpperCase();
+ if(!country)return 'Unknown';
+ if(!/^[A-Z]{2}$/.test(country))return country;
+ const name=countryDisplayNames?countryDisplayNames.of(country):country;
+ return name&&name!==country?name+' ('+country+')':country;
+}
+function bars(el,data,label,val){el.replaceChildren();const max=Math.max(1,...data.map(val));if(!data.length){el.textContent='No data yet';return}for(const d of data){const row=document.createElement('div');row.className='bar-row';const n=document.createElement('span');n.textContent=label(d);n.title=n.textContent;const track=document.createElement('span');track.className='track';const fill=document.createElement('i');fill.className='fill';fill.style.width=Math.max(1,100*val(d)/max)+'%';track.append(fill);const count=document.createElement('strong');count.textContent=fmt(val(d));row.append(n,track,count);el.append(row)}}
+function fillTrend(raw,hours,generatedAt,rangeInfo){
+ if(timeRange.kind==='all_time')return raw;
+ const now=rangeInfo?.to?new Date(rangeInfo.to):(generatedAt?new Date(generatedAt):new Date());
+ const start=rangeInfo?.from?new Date(rangeInfo.from).getTime():now.getTime()-hours*3600000;
+ const unit=hours<=1?300000:hours<=72?3600000:86400000;
+ const first=Math.floor(start/unit)*unit;
+ const end=Math.floor(now.getTime()/unit)*unit;
+ const map=new Map(raw.map(x=>[String(x.day),x]));
+ const results=[];
+ for(let t=first;t<=end;t+=unit){
+  const date=new Date(t);
+  const iso=date.toISOString();
+  const key=hours<=1?iso.slice(0,16).replace('T',' '):hours<=72?iso.slice(0,13).replace('T',' '):iso.slice(0,10);
+  results.push(map.get(key)||{day:key,pageviews:0,visitors:0});
+ }
+ return results;
+}
+function plot(arr){const max=Math.max(1,...arr.map(v=>v.pageviews));const points=(arr.length?arr:[{pageviews:0}]).map((v,i)=>(15+(i*650/Math.max(arr.length-1,1))).toFixed(1)+','+(174-(v.pageviews/max)*142).toFixed(1)).join(' ');$('trend-line').setAttribute('points',points);$('trend-area').setAttribute('d','M'+points.replaceAll(' ',' L')+' L665,174 L15,174Z');$('date-label').textContent=arr.length?(arr[0].day+' — '+arr[arr.length-1].day):'No data';}
+function insight(text){
+ const li=document.createElement('li');li.textContent=text;$('insight-list').append(li);
+}
+function isSelfReferrer(host){
+ const h=String(host||'').trim().toLowerCase().replace(/\.$/,'');
+ return h==='hifzamoinn.github.io';
+}
+function sourceClassification(d){
+ const rows=Array.isArray(d.referrers)?d.referrers:[];
+ const external=[],internal=[];
+ let known=0;
+ for(const r of rows){
+  const host=String(r.referrer||'').trim().toLowerCase();
+  const views=Math.max(0,Number(r.views)||0);
+  if(!host||!views)continue;
+  known+=views;
+  (isSelfReferrer(host)?internal:external).push({referrer:host,views});
+ }
+ const total=Math.max(0,Number(d.summary?.pageviews)||0);
+ return {external,internal,remainder:Math.max(0,total-known),total};
+}
+function groupedSources(d){
+ const classified=sourceClassification(d);
+ const counts={LinkedIn:0,Google:0,GitHub:0,Other:0};
+ for(const r of classified.external){
+  const host=r.referrer,views=r.views;
+  if(host==='linkedin.com'||host.endsWith('.linkedin.com')||host==='lnkd.in'||host==='com.linkedin.android')counts.LinkedIn+=views;
+  else if(host==='google.com'||host.endsWith('.google.com'))counts.Google+=views;
+  else if(host==='github.com'||host.endsWith('.github.com'))counts.GitHub+=views;
+  else counts.Other+=views;
+ }
+ counts.Other+=classified.remainder;
+ return [['LinkedIn',counts.LinkedIn],['Google',counts.Google],['GitHub',counts.GitHub],['Other / unattributed',counts.Other]];
+}
+function renderTrafficAndBlogs(d){
+ const classified=sourceClassification(d);
+ bars($('external-referrers'),classified.external,x=>x.referrer,x=>x.views);
+ bars($('internal-referrers'),classified.internal,x=>x.referrer,x=>x.views);
+ $('external-note').textContent='Known external sources: '+fmt(classified.external.reduce((n,x)=>n+x.views,0))+' referred page views. Domains, not unique visitors.';
+ $('internal-note').textContent='Own-site referrals: '+fmt(classified.internal.reduce((n,x)=>n+x.views,0))+' page views from internal navigation.';
+ $('unattributed-note').textContent=classified.remainder?fmt(classified.remainder)+' page views have no source in this breakdown. This can include direct/hidden referrers and lower-ranked domains omitted by the top-10 API limit.':'No additional unattributed page views in the returned breakdown.';
+ const clicks=Math.max(0,Number(d.summary?.blog_opens)||0);
+ const articles=(Array.isArray(d.pages)?d.pages:[]).filter(x=>String(x.path||'').startsWith('/blog/'));
+ const views=articles.reduce((n,x)=>n+Math.max(0,Number(x.views)||0),0);
+ $('blog-clicks').textContent=fmt(clicks);
+ $('blog-views').textContent=fmt(views);
+ bars($('blog-pages'),articles,x=>decodeURIComponent(x.path.split('/').pop().replace(/\.html$/,'')).replace(/[-_]/g,' '),x=>x.views);
+ $('blog-note').textContent='Article page views shown are '+(articles.length?'from '+articles.length+' blog page'+(articles.length===1?'':'s'):'not available')+' in the top-12 pages returned by the API; they may undercount all blog views. Blog-link clicks are separate events, not confirmed reads.';
+}
+function visitorBreakdowns(d,isDemo){
+ const ctx=d.context||{},list=[
+  ['visitor-cities','cities',x=>(x.city||'Unknown')+', '+(x.country||'')],
+  ['visitor-regions','regions',x=>(x.region||'Unknown')+', '+(x.country||'')],
+  ['visitor-networks','networks',x=>x.network_org||'Unknown'],
+  ['visitor-browsers','browsers',x=>x.browser||'Other'],
+  ['visitor-os','operating_systems',x=>x.os||'Other'],
+  ['visitor-devices','devices',x=>x.device||'Other'],
+  ['visitor-timezones','timezones',x=>x.timezone||'Unknown'],
+  ['visitor-referrers','referrers',x=>x.referrer||'Unknown']
+ ];
+ for(const [id,key,display] of list){
+  bars($(id),isDemo?[]:(ctx[key]||[]),display,x=>x.visits);
+ }
+ $('visitor-context-note').textContent=isDemo?'Demo data does not represent any real visitors.':Number(ctx.consented_context_visits)>0?fmt(ctx.consented_context_visits)+' opted-in visits provided detailed network context in this period. Some location fields may be unavailable.':'No detailed opted-in visitor context yet. Requires the Cloudflare schema and Worker update, plus visitor consent.';
+}
+function renderJourney(d,isDemo){
+ const el=$('journey-recent'),journey=isDemo?{}:(d.journey||{}),pages=journey.pages||[],transitions=journey.transitions||[],recent=journey.recent||[];
+ $('journey-sessions').textContent=isDemo?'—':fmt(journey.sessions);
+ $('journey-steps').textContent=isDemo?'—':fmt(journey.page_steps);
+ $('journey-average').textContent=isDemo?'—':(Number(journey.avg_pages_per_session)||0).toFixed(1);
+ const makeRecord=(parent,title,description,value,max)=>{
+  const entry=document.createElement('div');entry.className='journey-record';
+  const heading=document.createElement('strong');heading.textContent=title;
+  const subtitle=document.createElement('small');subtitle.textContent=description;
+  const track=document.createElement('div');track.className='path-track';
+  const fill=document.createElement('div');fill.className='path-fill';fill.style.width=Math.max(1,100*value/Math.max(1,max))+'%';track.append(fill);
+  entry.append(heading,subtitle,track);parent.append(entry);
+ };
+ const pEl=$('journey-pages');pEl.replaceChildren();
+ const maxPage=Math.max(1,...pages.map(x=>Number(x.total_ms)||0));
+ for(const p of pages)makeRecord(pEl,p.path,fmt(p.views)+' page views · '+(p.avg_active_ms===null?'Duration unavailable':miniTime(p.avg_active_ms)+' avg active'),Number(p.total_ms)||0,maxPage);
+ if(!pages.length)pEl.textContent='No completed, opted-in page visits in this period.';
+ const tEl=$('journey-transitions');tEl.replaceChildren();
+ const maxTransition=Math.max(1,...transitions.map(x=>Number(x.count)||0));
+ for(const t of transitions)makeRecord(tEl,t.from+' → '+t.to,fmt(t.count)+' transitions',Number(t.count)||0,maxTransition);
+ if(!transitions.length)tEl.textContent='No multi-page opted-in journeys yet.';
+ el.replaceChildren();
+ for(const r of recent){
+  const box=document.createElement('div');box.className='journey-entry';
+  const heading=document.createElement('h4');heading.textContent=new Date(r.started_at).toLocaleString()+' · '+(r.source||'Direct / unknown')+' · '+(r.device||'other');
+  const list=document.createElement('ol');list.className='journey-steps';
+  for(const [i,step] of (r.steps||[]).entries()){
+   const item=document.createElement('li'),number=document.createElement('span'),label=document.createElement('span');
+   number.className='journey-step-number';number.textContent=i+1;label.textContent=step.path+' · '+(step.active_ms===null?'Still active / unavailable':miniTime(step.active_ms)+' active');
+   item.append(number,label);list.append(item);
+  }
+  box.append(heading,list);el.append(box);
+ }
+ if(!recent.length)el.textContent='No opted-in journeys have been recorded yet.';
+ $('journey-note').textContent=isDemo?'Demo data does not simulate individual browsing journeys.':!Object.prototype.hasOwnProperty.call(d,'journey')?'Journey reporting is unavailable from the connected analytics service.':journey.sessions?'Time is estimated from activity on visible pages; navigation outside the site cannot be observed. Only the latest 12 journeys are displayed.':'No journeys recorded for this time window yet. Journeys appear automatically after visitors consent and explore your pages.';
+}
+function returnInterval(hours){const h=Number(hours)||0;return h<1?Math.round(h*60)+' min':h<48?(Math.round(h*10)/10)+' hr':(Math.round(h/24*10)/10)+' days'}
+function renderReturning(d,isDemo){
+ const r=d.returning||{},available=!isDemo&&r.available===true;
+ const values={'return-session-count':r.returning_sessions,'return-browser-count':r.returning_browsers,'return-median':r.median_hours==null?'—':returnInterval(r.median_hours),'return-page-avg':r.avg_pages==null?'—':r.avg_pages};
+ for(const [id,value] of Object.entries(values))$(id).textContent=available?(typeof value==='number'?fmt(value):value||'—'):'—';
+ bars($('return-intervals'),available?(r.intervals||[]):[],x=>x.label,x=>x.count);
+ bars($('return-pages'),available?(r.popular_pages||[]):[],x=>x.path,x=>x.views);
+ const root=$('return-recent');root.replaceChildren();
+ if(available)for(const [i,v] of (r.recent||[]).entries()){
+  const card=document.createElement('div');card.className='journey-entry';
+  const h=document.createElement('h4');h.textContent='Return '+(i+1)+' · '+new Date(v.at).toLocaleString()+' · after '+returnInterval(v.after_hours);
+  const grid=document.createElement('div');grid.className='return-compare';
+  for(const [label,steps] of [['Previous visit',v.previous_paths||[]],['Returning visit',v.paths||[]]]){
+   const cell=document.createElement('div'),b=document.createElement('b'),p=document.createElement('p');b.textContent=label;p.textContent=steps.join(' → ')||'No recorded pages';cell.append(b,p);grid.append(cell)
+  }card.append(h,grid);root.append(card)
+ }
+ if(!root.children.length)root.textContent='No matched returning journeys available yet.';
+ $('return-note').textContent=isDemo?'Demo mode: no fictional returning journeys are shown.':!r.available?'Returning journey analysis needs the D1 migration and updated Worker. Existing analytics remain available.':r.returning_sessions?'Only consenting browser journeys are included. Historical journeys cannot be linked retroactively.'+(r.limited?' Results capped at 5,000 page steps.':''):'No matched returning journeys yet; new consenting visits will populate this section.';
+}
+function render(d,isDemo){
+ const summary=d.summary||{},repeat=d.repeat||{},hours=timeRange.kind==='all_time'?0:timeRange.kind==='custom'?(Date.parse(timeRange.to)-Date.parse(timeRange.from))/3600000:timeRange.hours;
+ const sources=groupedSources(d);
+ const linkedin=sources[0][1],pageviews=Math.max(0,Number(summary.pageviews)||0);
+ const projects=Array.isArray(d.projects)?d.projects:[];
+ const sortedProjects=[...projects].sort((a,b)=>(Number(b.opens)||0)-(Number(a.opens)||0));
+ $('visitors').textContent=fmt(summary.visitors);
+ $('linkedin-views').textContent=fmt(linkedin);
+ $('linkedin-share').textContent=pageviews?fmt(linkedin/pageviews*100)+'% of tracked page views':'No LinkedIn referrals recorded';
+ $('project-opens').textContent=fmt(summary.project_opens);
+ $('top-project').textContent=sortedProjects.length?'Top: '+(names[sortedProjects[0].item]||sortedProjects[0].item):'No project-link opens recorded';
+ $('returning-visits').textContent=isDemo?'—':fmt(repeat.returning_visits);
+ $('pageviews').textContent=fmt(summary.pageviews);
+ $('duration').textContent=miniTime((Number(summary.active_ms)||0)/Math.max(1,Number(summary.sessions)||1));
+ $('new-browsers').textContent=isDemo?'—':fmt(repeat.new_browsers);
+ $('consented-browsers').textContent=isDemo?'—':fmt(repeat.distinct_consented_browsers);
+ $('repeat-explanation').textContent=isDemo?'No fabricated repeat-visit data is displayed.':'Only consenting browsers are counted. This does not identify people.';
+ $('trend-label').textContent=hours===0?'Monthly tracked visits':hours<=1?'5-minute tracked visits':hours<=72?'Hourly tracked visits':'Daily tracked visits';
+ plot(isDemo?(d.daily||[]):fillTrend(d.daily||[],hours,d.generated_at,d.range));
+ bars($('sources'),sources.map(([name,views])=>({name,views})),x=>x.name,x=>x.views);
+ bars($('projects'),sortedProjects,x=>names[x.item]||x.item,x=>x.opens);
+ const list=$('insight-list');list.replaceChildren();
+ if(isDemo){
+  insight('Demo only: these figures are fictional examples. Connect your Worker to see actual insights.');
+ }else{
+  if(pageviews===0)insight('No tracked page views were recorded in this period. Try a longer date range.');
+  else{
+   insight(fmt(summary.visitors)+' tracked page visit'+(Number(summary.visitors)===1?'':'s')+' and '+fmt(pageviews)+' page load'+(pageviews===1?'':'s')+' were recorded in this period.');
+   if(linkedin>0)insight('LinkedIn referred '+fmt(linkedin)+' page view'+(linkedin===1?'':'s')+' ('+Math.round(100*linkedin/pageviews)+'% of tracked page views). Some referrals may be hidden.');
+   else insight('No identifiable LinkedIn referrals were recorded; visitors may still arrive from LinkedIn with their referrer hidden.');
+   if(sortedProjects.length)insight('Your most-opened project was '+(names[sortedProjects[0].item]||sortedProjects[0].item)+' with '+fmt(sortedProjects[0].opens)+' tracked opening'+(Number(sortedProjects[0].opens)===1?'':'s')+'.');
+   else insight('No project openings were recorded in this period.');
+  }
+  if(Number(repeat.returning_visits)>0)insight(fmt(repeat.returning_visits)+' returning visit'+(Number(repeat.returning_visits)===1?' was':'s were')+' recognized among browsers that accepted analytics cookies.');
+  else insight('No returning visits were recognized among opted-in browsers in this period.');
+ }
+ const sections=$('sections');sections.replaceChildren();const sectionData=d.sections||[];const max=Math.max(1,...sectionData.map(x=>Number(x.active_ms)||0));
+ for(const x of sectionData){const item=document.createElement('div');item.className='section-item';const label=document.createElement('span');label.textContent=x.section;const count=document.createElement('b');count.textContent=miniTime(x.active_ms);const track=document.createElement('span');track.className='track';const fill=document.createElement('i');fill.className='fill';fill.style.width=100*(Number(x.active_ms)||0)/max+'%';track.append(fill);item.append(label,count,track);sections.append(item)}
+ if(!sectionData.length)sections.textContent='No section engagement data yet';
+ const sc=$('scroll');sc.replaceChildren();
+ for(const n of [25,50,75,90]){const v=(d.scroll||[]).find(x=>Number(x.depth)===n);const item=document.createElement('div');item.className='scroll-step';const b=document.createElement('b');b.textContent=fmt(v?.sessions||0);const l=document.createElement('small');l.textContent=n+'% depth';item.append(b,l);sc.append(item)}
+ bars($('filters'),d.filters||[],x=>x.item,x=>x.clicks);
+ const pages=$('pages');pages.replaceChildren();
+ for(const x of d.pages||[]){const tr=document.createElement('tr');const td=document.createElement('td');td.textContent=x.path;const v=document.createElement('td');v.textContent=fmt(x.views);tr.append(td,v);pages.append(tr)}
+ bars($('countries'),d.countries||[],x=>countryLabel(x.country),x=>x.views);
+ visitorBreakdowns(d,isDemo);
+ renderJourney(d,isDemo);
+ renderReturning(d,isDemo);
+ bars($('devices'),d.devices||[],x=>x.device,x=>x.views);
+ renderTrafficAndBlogs(d);
+ mode=isDemo?'demo':'live';$('dot').classList.toggle('live',!isDemo);
+ $('status').textContent=isDemo?'Demo mode — fictional example; date filter requires a live connection':'Live analytics — authenticated';
+ $('updated').textContent=isDemo?'Not connected':'Updated '+new Date().toLocaleTimeString();
+ $('demo').textContent=isDemo?'Demo active':'View demo';
+}
+function rangeLabel(hours){
+ if(hours===0)return 'All retained history';
+ if(hours<24)return 'Last '+hours+' hour'+(hours===1?'':'s');
+ if(hours%24===0)return 'Last '+(hours/24)+' day'+(hours===24?'':'s');
+ return 'Last '+hours+' hours';
+}
+function syncTimeControls(){
+ const hours=timeRange.hours;
+ $('range-summary').textContent=rangeLabel(hours);
+ $('time-selection').textContent='Selected: '+rangeLabel(hours);
+ const index=sliderHours.indexOf(hours);
+ if(index>=0){$('time-slider').value=String(index);$('time-slider-value').textContent=rangeLabel(hours);}
+ for(const button of document.querySelectorAll('.time-presets button'))button.classList.toggle('active',Number(button.dataset.hours)===hours);
+}
+function showTimeRange(open){
+ $('time-window').hidden=!open;
+ $('range-toggle').setAttribute('aria-expanded',String(open));
+}
+function applyRolling(hours){
+ timeRange=hours===0?{kind:'all_time',hours:0}:{kind:'rolling',hours};
+ syncTimeControls();
+ if(secret)load().catch(e=>{$('status').textContent=e.message});
+ else $('status').textContent='Demo mode — connect live analytics to apply this time range';
+}
+async function load(){
+ if(!api||!secret)return;
+ const version=++requestVersion;
+ const current={...timeRange};
+ const params=new URLSearchParams();
+ params.set('hours',String(current.hours));
+ const resp=await fetch(api+'/stats?'+params.toString(),{headers:{Authorization:'Bearer '+secret},cache:'no-store'});
+ if(!resp.ok){
+  let message='Analytics service unavailable ('+resp.status+')';
+  if(resp.status===401)message='Invalid token or allowed origin';
+  else if(resp.status===400)message='Invalid range or outdated Cloudflare Worker. Deploy the latest Worker code.';
+  throw Error(message);
+ }
+ const data=await resp.json();
+ if(version!==requestVersion)return;
+ if(!data.range||!data.range.from||!data.range.to||data.range.kind!==current.kind||Number(data.hours)!==Number(current.hours)){
+  $('status').textContent='Cloudflare Worker update required — the requested time window was not applied.';
+  $('dot').classList.remove('live');
+  throw Error('Cloudflare Worker is outdated: deploy the latest Worker source to apply this time window.');
+ }
+ render(data,false);
+ $('date-label').textContent=current.kind==='all_time'?'All retained history · monthly trend':new Date(data.range.from).toLocaleString()+' — '+new Date(data.range.to).toLocaleString()+' (local time)';
+}
+$('range-toggle').addEventListener('click',()=>showTimeRange($('time-window').hidden));
+$('time-close').addEventListener('click',()=>showTimeRange(false));
+document.querySelectorAll('.time-presets button').forEach(button=>button.addEventListener('click',()=>applyRolling(Number(button.dataset.hours))));
+$('time-slider').addEventListener('input',()=>{
+ const hours=sliderHours[Number($('time-slider').value)];
+ $('time-slider-value').textContent=rangeLabel(hours);
+});
+$('time-slider').addEventListener('change',()=>{
+ applyRolling(sliderHours[Number($('time-slider').value)]);
+});
+const connectionPanel=$('connection-panel');
+function showConnectionPanel(open){
+ connectionPanel.hidden=!open;
+ $('connection-toggle').setAttribute('aria-expanded',String(open));
+ if(open)requestAnimationFrame(()=>(!api?$('endpoint'):$('token')).focus());
+}
+$('connection-toggle').addEventListener('click',()=>showConnectionPanel(connectionPanel.hidden));
+$('connection-close').addEventListener('click',()=>showConnectionPanel(false));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!connectionPanel.hidden){showConnectionPanel(false);$('connection-toggle').focus();}});
+document.addEventListener('click',e=>{if(!connectionPanel.hidden&&!connectionPanel.contains(e.target)&&!$('connection-toggle').contains(e.target))showConnectionPanel(false)});
+$('connect').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const raw=$('endpoint').value.trim().replace(/\/$/,'');
+ if(!/^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(raw)){alert('Enter a valid HTTPS Worker base URL, without a path.');return}
+ api=raw;secret=$('token').value;
+ try{await load();localStorage.setItem('portfolio-insights-api',api);$('token').value='';$('connection-toggle').classList.add('connected');showConnectionPanel(false);}
+ catch(err){secret='';$('status').textContent='Connection failed — '+err.message;alert(err.message)}
+});
+$('demo').addEventListener('click',()=>{requestVersion++;render(example,true)});
+$('refresh').addEventListener('click',()=>{if(secret)load().catch(e=>{$('status').textContent=e.message});else render(example,true)});
+syncTimeControls();
+
+render(example,true);
+})();
+</script>
+</body></html>
