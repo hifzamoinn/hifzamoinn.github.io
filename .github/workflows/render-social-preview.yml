@@ -1,0 +1,31 @@
+name: Render social preview thumbnail
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/social/hifza-portfolio-card.svg'
+      - '.github/workflows/render-social-preview.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Render exact 1200 x 630 PNG from vector card
+        run: |
+          npm install --no-save --no-package-lock sharp@0.34.5
+          node -e "require('sharp')('assets/social/hifza-portfolio-card.svg',{density:96}).resize(1200,630).png({compressionLevel:9}).toFile('assets/social/hifza-portfolio-card.png').then(()=>console.log('Social PNG rendered'))"
+      - name: Commit PNG asset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/social/hifza-portfolio-card.png
+          if ! git diff --cached --quiet; then
+            git commit -m "Render LinkedIn social card PNG from approved vector artwork"
+            git push
+          fi
