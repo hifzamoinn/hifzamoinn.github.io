@@ -1,3 +1,3 @@
-// After deploying Hifza's Cloudflare Worker, paste its public HTTPS Worker URL here.
-// Do NOT put an admin token or any secret into this file.
-window.HIFZA_INSIGHTS_ENDPOINT = "";
+// Public Cloudflare Worker endpoint for Hifza Moin Portfolio Insights.
+// Never store an admin token or any secret here.
+window.HIFZA_INSIGHTS_ENDPOINT = "https://hifza-portfolio-insights.hifzamoin1997.workers.dev";
